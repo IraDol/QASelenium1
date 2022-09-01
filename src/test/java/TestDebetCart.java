@@ -20,17 +20,18 @@ public class TestDebetCart {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
     }
 
     @AfterEach
     void teardown() {
         driver.quit();
+        driver=null;
     }
 
     @Test
     void test() {
-        driver.get("http://0.0.0.0:7777"); //запустить приложение
+        driver.get("http://localhost:7777/"); //запустить приложение
         driver.findElement(By.cssSelector("span[data-test-id='name'] input")).sendKeys("Анна-Мария Долгова");
         driver.findElement(By.cssSelector("span[data-test-id='phone'] input")).sendKeys("+79671702996");
         driver.findElement(By.className("checkbox")).click();
