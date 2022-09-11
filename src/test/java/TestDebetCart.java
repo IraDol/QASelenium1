@@ -26,7 +26,7 @@ public class TestDebetCart {
     @AfterEach
     void teardown() {
         driver.quit();
-        driver=null;
+        driver = null;
     }
 
     @Test
@@ -34,8 +34,9 @@ public class TestDebetCart {
         driver.get("http://localhost:7777/"); //запустить приложение
         driver.findElement(By.cssSelector("span[data-test-id='name'] input")).sendKeys("Анна-Мария Долгова");
         driver.findElement(By.cssSelector("span[data-test-id='phone'] input")).sendKeys("+79671702996");
-        driver.findElement(By.className("checkbox")).click();
-        driver.findElement(By.className("button")).click();
+        driver.findElement(By.cssSelector("label[data-test-id='agreement']")).click();
+        driver.findElement(By.className("button__content")).click();
+
         String text = driver.findElement(By.className("paragraph")).getText();
         Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
